@@ -62,9 +62,7 @@ def hue_shifted(image, empty_picture_array, shift_value):
     7. Hue Shift: shift the hue of the image by a specific value
     """
     np.copyto(empty_picture_array, image)
-    empty_picture_array[:, :, 0] += shift_value   
-    empty_picture_array[:, 0, :] += shift_value
-    empty_picture_array[0, :, :] += shift_value
+    empty_picture_array += shift_value
     cv2.imwrite('assignment_2/solutions/iris-hue-shifted.jpg', empty_picture_array)
 
     return empty_picture_array
