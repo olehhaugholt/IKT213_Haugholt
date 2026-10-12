@@ -17,7 +17,7 @@ def harris_corner_detection(referance_image):
 
 
 def SIFT_image_alignment(image_to_align, referance_image, max_feature=10, good_match_percent=0.7):
-    MIN_MATCH_COUNT = 10
+    MIN_MATCH_COUNT = 4
 
     img1 = cv2.imread(image_to_align, cv2.IMREAD_GRAYSCALE)
     img2 = cv2.imread(referance_image, cv2.IMREAD_GRAYSCALE)
@@ -66,6 +66,12 @@ def SIFT_image_alignment(image_to_align, referance_image, max_feature=10, good_m
     img_matches = cv2.drawMatches(img1, keypoints1, img2, keypoints2, good, None, **draw_params, )
 
     cv2.imwrite('./assignment_4/solutions/SIFT_image_matcher.png', img_matches)
+
+    # algin image
+    aligned = cv2.warpPerspective(img1, M, (img2.shape[1], img2.shape[0]))
+
+    cv2.imwrite('./assignment_4/solutions/SIFT_image_align.png', aligned)
+
 
 referance_image = '/Users/olehh/UiA/IKT213_Haugholt/assignment_4/reference_img.png'
 
